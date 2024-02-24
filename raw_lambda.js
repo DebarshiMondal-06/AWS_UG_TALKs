@@ -4,7 +4,7 @@ import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
 const client = new DynamoDB();
 const ddbDocClient = DynamoDBDocument.from(client);
 
-const TABLE_NAME = <YOUR_TABLE_NAME>;
+const TABLE_NAME = "<YOUR_TABLE_NAME>";
 
 
 
