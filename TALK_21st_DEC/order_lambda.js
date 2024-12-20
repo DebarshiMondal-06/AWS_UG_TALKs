@@ -12,7 +12,7 @@ const generateUUID = () => randomUUID();
 const sendSMS = async (name, phoneNumber) => {
   const input = {
     PhoneNumber: `+91${phoneNumber}`,
-    Message: `${name} your Order from Amazon is confirmed!`,
+    Message: `${name} your Order from Amazon is confirmed! kindly please check your order details at amazon.in`,
     Subject: "Order Confirmed!",
   };
   const command = new PublishCommand(input);
@@ -22,9 +22,10 @@ const sendSMS = async (name, phoneNumber) => {
 export const handler = async (event) => {
   console.log(event);
   try {
-    // const getMessages = event.Records[0].body;
-    const { name, order_name, brand, category, price, phoneNumber } = event;
-    // const { name, order_name, brand, category, price, phoneNumber } = JSON.parse(getMessages);
+    const getMessages = event.Records[0].body;
+    // const { name, order_name, brand, category, price, phoneNumber } = event;
+    const { name, order_name, brand, category, price, phoneNumber } =
+      JSON.parse(getMessages);
 
     if (!name || !order_name || !brand || !category || !phoneNumber) {
       throw "Missing Attributes, Failed to Create Order!";
